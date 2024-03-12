@@ -1,0 +1,19 @@
+.tshirtCard  {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+ 
+    
+}
+.tshirtCard button {
+    padding: 9px 16px;
+    background-color: black;
+    color: white;
+    border-radius: 9px;
+}
+
+.cardInfo{
+    font-weight: bold;
+}
+ 

@@ -1,0 +1,13 @@
+.nav {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    
+}
+
+.nav a{
+    font-size: 20px;
+    color: red;
+    font-weight: bold;
+    text-decoration: none;
+}
