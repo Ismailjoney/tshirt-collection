@@ -1,0 +1,7 @@
+.footer{
+    display: flex;
+    justify-content: center;
+    margin: 13px 0;
+    font-weight: 700;
+    background-color: coral;
+}

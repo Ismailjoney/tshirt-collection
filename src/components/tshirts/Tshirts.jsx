@@ -9,16 +9,18 @@ const Tshirts = () => {
     const tshirts = useLoaderData([])
     const [shirt, setShirt] = useState([])
     const [total, setTotal] = useState(0)
+    const [vat, setVat] = useState(0)
+    const [finalTotal, setFinalTotal] = useState(0)
 
 
     const handdleAddToCart = (tshirt) => {
 
         const selectUniqueShirt = shirt.find(ts => ts._id === tshirt._id)
-        
+
         if (selectUniqueShirt) {
             notify()
             return
-        } 
+        }
         else {
             const newShirt = [...shirt, tshirt]
             setShirt(newShirt)
@@ -27,14 +29,19 @@ const Tshirts = () => {
             for (let shirt of newShirt) {
                 initial = total + shirt.price;
             }
+            let tax = parseFloat(initial * 2 / 100)
+            let finalResualt = initial + tax
 
             setTotal(initial)
-             success()
+            setVat(tax.toFixed(2))
+            setFinalTotal(finalResualt.toFixed(2))
+
+            success()
         }
     }
 
     //toast
-    const  success = () => toast.success("added successfully", {
+    const success = () => toast.success("added successfully", {
         position: "top-center",
         autoClose: 1000,
         hideProgressBar: false,
@@ -45,8 +52,8 @@ const Tshirts = () => {
         theme: "dark",
     });
 
-    const notify = () =>toast.warn('You allready added', {
-        position: "top-right",
+    const notify = () => toast.warn('You allready added', {
+        position: "top-center",
         autoClose: 1500,
         hideProgressBar: false,
         closeOnClick: true,
@@ -54,8 +61,7 @@ const Tshirts = () => {
         draggable: true,
         progress: undefined,
         theme: "colored",
-        });
-
+    });
 
 
     return (
@@ -73,19 +79,18 @@ const Tshirts = () => {
                 </div>
             </div>
             <div className='card'>
-                <h3>Tshirt card :</h3>
+                <h3>Tshirt Select : {shirt.length}</h3>
                 <div className='cartCalculation'>
                     {
                         shirt.map((ts, idx) =>
                             <li key={idx}>
-                                {`${ts.name} ${ts.price}tk`}
+                                {`${ts.name} ${ts.price + ' '}tk`}
                             </li>
-
                         )
                     }
-
-                    <h4 >Total : {total} tK</h4>
-
+                    <h4 >Total : {total} Tk</h4>
+                     <h4 >Vat : {vat} TK </h4>
+                    <h4 >Final Total : {finalTotal } Tk</h4>
                 </div>
             </div>
         </div>
